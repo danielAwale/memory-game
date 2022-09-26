@@ -1,9 +1,10 @@
 import React from 'react'
 import "./SingleCard.css"
 
-export const SingleCard = ({ card, handleChoice, flipped }) => {
+export const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
   const handleEvent = () => {
-    return handleChoice(card);
+    if (!disabled)
+      return handleChoice(card);
   }
   return (
     <div className='card'>
