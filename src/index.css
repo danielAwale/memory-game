@@ -6,6 +6,5 @@ body {
   margin: 0;
   font-size: 1.5em;
   text-align: center;
-  background: #8f8cf2;
-  color: #fff;
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb)
 }
