@@ -21,13 +21,23 @@ function App() {
 
     setCards(shuffledCards);
   }
-
-  console.log(cards);
   return (
-    <div>
+    <div className='App'>
       <h1>Panda's Pic! Memory Game</h1>
       <button onClick={shuffleCards}>Let's Play!
       </button>
+      <div>
+        {cards.map(card => {
+          return (
+            <div className='card' key={card.id}>
+              <div>
+                <img className='front' src={card.src} alt="front" />
+                <img className='back' src="/img/cardCover.png" alt="cover" />
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   );
 }
