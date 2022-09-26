@@ -32,14 +32,23 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        console.log("that's a match")
+        setCards(prevValue => {
+          return prevValue.map((card) => {
+            if (card.src === choiceTwo.src) {
+              return { ...card, matched: true }
+            } else {
+              return card
+            }
+          })
+        })
         resetTurn();
       } else {
-        console.log("that ain't it!")
         resetTurn();
       }
     }
   }, [choiceOne, choiceTwo])
+
+  console.log(cards)
 
   const resetTurn = () => {
     setChoiceOne(null);
