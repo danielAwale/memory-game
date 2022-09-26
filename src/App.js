@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { SingleCard } from './components/SingleCard';
 
 const cardImages = [
-  { "src": "/img/annoyed.png" },
-  { "src": "/img/bored.png" },
-  { "src": "/img/computertime.png" },
-  { "src": "/img/cuteface.png" },
-  { "src": "/img/pawwws.png" },
-  { "src": "/img/pets.png" },
-  { "src": "/img/shelftime.png" },
-  { "src": "/img/sleepy.png" },
+  { "src": "/img/annoyed.png", matched: false },
+  { "src": "/img/bored.png", matched: false },
+  { "src": "/img/computertime.png", matched: false },
+  { "src": "/img/cuteface.png", matched: false },
+  { "src": "/img/pawwws.png", matched: false },
+  { "src": "/img/pets.png", matched: false },
+  { "src": "/img/shelftime.png", matched: false },
+  { "src": "/img/sleepy.png", matched: false },
 ]
 
 function App() {
@@ -29,7 +29,24 @@ function App() {
     return choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   }
 
-  console.log(choiceOne, choiceTwo);
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log("that's a match")
+        resetTurn();
+      } else {
+        console.log("that ain't it!")
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo])
+
+  const resetTurn = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+  }
+
+
 
   return (
     <div className='App'>
