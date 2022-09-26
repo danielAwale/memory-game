@@ -15,6 +15,8 @@ const cardImages = [
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
 
   const shuffleCards = () => {
@@ -22,6 +24,13 @@ function App() {
 
     setCards(shuffledCards);
   }
+
+  const handleChoice = (card) => {
+    return choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  }
+
+  console.log(choiceOne, choiceTwo);
+
   return (
     <div className='App'>
       <h1>Panda's Pic! Memory Game</h1>
@@ -34,7 +43,10 @@ function App() {
       <div className='card-grid'>
         {cards.map(card => {
           return (
-            <SingleCard card={card} key={card.id} />
+            <SingleCard
+              card={card}
+              key={card.id}
+              handleChoice={handleChoice} />
           )
         })}
       </div>
