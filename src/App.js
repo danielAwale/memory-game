@@ -43,7 +43,9 @@ function App() {
         })
         resetTurn();
       } else {
-        resetTurn();
+        setTimeout(() => {
+          resetTurn();
+        }, 1000);
       }
     }
   }, [choiceOne, choiceTwo])
@@ -59,7 +61,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>Panda's Pic! Memory Game</h1>
+      <h1>Panda's Pik! Memory Game</h1>
       <button
         onClick={shuffleCards}>
         Let's Play!
@@ -72,7 +74,9 @@ function App() {
             <SingleCard
               card={card}
               key={card.id}
-              handleChoice={handleChoice} />
+              handleChoice={handleChoice}
+              flipped={card === choiceOne || card === choiceTwo || card.matched}
+            />
           )
         })}
       </div>
